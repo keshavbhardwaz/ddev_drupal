@@ -3,32 +3,32 @@ Initiate the git in the local folder/directory
 
 git init  						
 git remote add origin <git link>                        origin is the referring name for git link
-git remote -v 				                            to verify remote location 
+git remote -v 				                                  to verify remote location 
 
 
 Git pull <git link> <branch>
 
 
 ——-Adding, Committing and Pushing ——-
-git add file_name or git add . 		                	to add all the file
+git add file_name or git add . 		                	   to add all the file
 git commit -m “commit message in present tense”
 
 git push origin branch_name
 git push origin main 
 Or
-git push -u origin main 			            		to set origin main as upstream
+git push -u origin main 			                     		to set origin main as upstream
 
 
 
 
 Branch:
 
-Git branch 								    	    	to check branch
-Git branch -M main 						    	        rename the branch from master to main
-Git branch -d branch_name				             	to delete any branch
-Git checkout -b branch_name				                creating branch
-Git checkout new_branch_name			            	checkout to other branch
-Git checkout branch_name^				              	Head move to parent of branch_name
+Git branch 								    	                  	to check branch
+Git branch -M main 						    	                rename the branch from master to main
+Git branch -d branch_name				             	      to delete any branch
+Git checkout -b branch_name				                  creating branch
+Git checkout new_branch_name			            	    checkout to other branch
+Git checkout branch_name^				              	    Head move to parent of branch_name
 
 Git log
 Git logs hash id
