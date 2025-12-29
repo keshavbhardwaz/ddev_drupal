@@ -24,11 +24,11 @@ git push -u origin main 			                     		to set origin main as upstream
 Branch:
 
 Git branch 								    	                  	to check branch
-Git branch -M main 						    	                rename the branch from master to main
-Git branch -d branch_name				             	      to delete any branch
-Git checkout -b branch_name				                  creating branch
-Git checkout new_branch_name			            	    checkout to other branch
-Git checkout branch_name^				              	    Head move to parent of branch_name
+Git branch -M main 						    	                  rename the branch from master to main
+Git branch -d branch_name				             	         to delete any branch
+Git checkout -b branch_name				                     creating branch
+Git checkout new_branch_name			            	         checkout to other branch
+Git checkout branch_name^				              	         Head move to parent of branch_name
 
 Git log
 Git logs hash id
