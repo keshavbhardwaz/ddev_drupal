@@ -58,6 +58,7 @@ class XmlEncoder implements EncoderInterface, DecoderInterface, NormalizationAwa
     public const STANDALONE = 'xml_standalone';
     public const TYPE_CAST_ATTRIBUTES = 'xml_type_cast_attributes';
     public const VERSION = 'xml_version';
+    public const CDATA_WRAPPING = 'cdata_wrapping';
 
     private array $defaultContext = [
         self::AS_COLLECTION => false,
@@ -68,6 +69,7 @@ class XmlEncoder implements EncoderInterface, DecoderInterface, NormalizationAwa
         self::REMOVE_EMPTY_TAGS => false,
         self::ROOT_NODE_NAME => 'response',
         self::TYPE_CAST_ATTRIBUTES => true,
+        self::CDATA_WRAPPING => true,
     ];
 
     public function __construct(array $defaultContext = [])
@@ -389,7 +391,7 @@ class XmlEncoder implements EncoderInterface, DecoderInterface, NormalizationAwa
 
         if (\is_object($data)) {
             if (null === $this->serializer) {
-                throw new BadMethodCallException(sprintf('The serializer needs to be set to allow "%s()" to be used with object data.', __METHOD__));
+                throw new BadMethodCallException(\sprintf('The serializer needs to be set to allow "%s()" to be used with object data.', __METHOD__));
             }
 
             $data = $this->serializer->normalize($data, $format, $context);
@@ -408,7 +410,7 @@ class XmlEncoder implements EncoderInterface, DecoderInterface, NormalizationAwa
             return $this->appendNode($parentNode, $data, $format, $context, 'data');
         }
 
-        throw new NotEncodableValueException('An unexpected value could not be serialized: '.(!\is_resource($data) ? var_export($data, true) : sprintf('%s resource', get_resource_type($data))));
+        throw new NotEncodableValueException('An unexpected value could not be serialized: '.(!\is_resource($data) ? var_export($data, true) : \sprintf('%s resource', get_resource_type($data))));
     }
 
     /**
@@ -433,9 +435,9 @@ class XmlEncoder implements EncoderInterface, DecoderInterface, NormalizationAwa
     /**
      * Checks if a value contains any characters which would require CDATA wrapping.
      */
-    private function needsCdataWrapping(string $val): bool
+    private function needsCdataWrapping(string $val, array $context): bool
     {
-        return preg_match('/[<>&]/', $val);
+        return ($context[self::CDATA_WRAPPING] ?? $this->defaultContext[self::CDATA_WRAPPING]) && preg_match('/[<>&]/', $val);
     }
 
     /**
@@ -457,13 +459,13 @@ class XmlEncoder implements EncoderInterface, DecoderInterface, NormalizationAwa
             $node->appendChild($child);
         } elseif (\is_object($val)) {
             if (null === $this->serializer) {
-                throw new BadMethodCallException(sprintf('The serializer needs to be set to allow "%s()" to be used with object data.', __METHOD__));
+                throw new BadMethodCallException(\sprintf('The serializer needs to be set to allow "%s()" to be used with object data.', __METHOD__));
             }
 
             return $this->selectNodeType($node, $this->serializer->normalize($val, $format, $context), $format, $context);
         } elseif (is_numeric($val)) {
             return $this->appendText($node, (string) $val);
-        } elseif (\is_string($val) && $this->needsCdataWrapping($val)) {
+        } elseif (\is_string($val) && $this->needsCdataWrapping($val, $context)) {
             return $this->appendCData($node, $val);
         } elseif (\is_string($val)) {
             return $this->appendText($node, $val);
