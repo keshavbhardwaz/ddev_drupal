@@ -480,15 +480,15 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
   public function getBundleEntityType();
 
   /**
-   * Gets the entity type for which this entity provides bundles.
+   * Gets the entity type ID for which this entity provides bundles.
    *
    * It can be used by other modules to act accordingly; for example,
    * the Field UI module uses it to add operation links to manage fields and
    * displays.
    *
    * @return string|null
-   *   The entity type for which this entity provides bundles, or NULL if does
-   *   not provide bundles for another entity type.
+   *   The entity type ID for which this entity provides bundles, or NULL if
+   *   does not provide bundles for another entity type.
    */
   public function getBundleOf();
 
@@ -518,8 +518,8 @@ interface EntityTypeInterface extends PluginDefinitionInterface {
    *
    * The implications of this method are left to the discretion of the caller.
    * For example, a module providing an HTTP API may not expose entities of
-   * this type or a custom entity reference field settings form may deprioritize
-   * entities of this type in a select list.
+   * this type or a custom entity reference field settings form may reduce the
+   * priority for entities of this type in a select list.
    *
    * @return bool
    *   TRUE if the entity data is internal, FALSE otherwise.

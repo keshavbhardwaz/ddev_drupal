@@ -46,11 +46,12 @@ Git merge origin branch_name
 
 ——————————-Reverting———————————-
 
-Git reset —hard git_id
+Git reset —hard commit_id
 Git revert ~1
-Git revert git_id(hash_id)
+Git revert commit_id                         add one more commit
 
 Difference between git revert and reset?
+Difference better git fetch and git pull? Explain with example
 What is rebase in git and where it is used?
 
 Detaching HEAD
@@ -115,3 +116,23 @@ See 'git help git' for an overview of the system.
 Q: What would you do if you urgently needed information from someone working in a drastically different timezone (who was almost certainly asleep)? (They asked me this a few different times in slightly different ways.)
 
 Q: Hello support! My business has an internal Git server used for deployments. We have an internal Git server and we also use GitHub. For workflow purposes, how do I sync my repository to GitHub and and the internal Git server?
+
+
+
+
+
+
+c445758d (HEAD -> main, origin/main, origin/b2, origin/HEAD, b2) updated drupal to 10.2.0
+1eb091c9 updated drupal to 10.2
+10ff9d6a added more space in txt file
+881bf3fd (origin/b1, b1) added space in txt file
+e39ae6b8 added proper space to text.txt
+059264e8 adding content in text file in b1 branch only
+117a0681 added text file
+c598a33b enable admin toolbar
+92fce8bc After drush cr
+25e6952d Upgraded to D10.1.8 but pathauto is not working
+bc1634ea commiting all changes
+ad34e9cd delete twig
+c1984648 clone ddev repo and add readme file
+97463ba6 pushing for ddev_drupal
