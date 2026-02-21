@@ -15,8 +15,8 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    
     - uses: actions/checkout@v4
+<<<<<<< HEAD
 #    - name: Set up Composer
 #      run: |
 #        EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
@@ -30,6 +30,8 @@ jobs:
 #        fi
 #        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 #        rm composer-setup.php
+=======
+>>>>>>> parent of c78c62e6b (Add Composer setup to PHP workflow)
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
